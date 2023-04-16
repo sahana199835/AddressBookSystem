@@ -5,8 +5,6 @@ public class Contacts {
 	private String firstName, lastName, address, city, state, email;
 	private int zip;
 	private long phoneNumber;
-
-	public void Contact(String firstName, String lastName, String address, String city, String state, int zip,
 	public void Contacts(String firstName, String lastName, String address, String city, String state, int zip,
 			long phoneNumber, String email) {
 		this.firstName = firstName;
@@ -18,7 +16,8 @@ public class Contacts {
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 	}
-	public void show() {
+	
+		public void show() {
 		System.out.println(this.firstName + "" + this.lastName + "" + this.address + "" + this.city + "" + this.state
 				+ "" + this.email + "" + this.zip + "" + this.phoneNumber);
 	}
