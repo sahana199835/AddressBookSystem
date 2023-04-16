@@ -38,91 +38,16 @@ public class AddressBookSystem extends Contacts {
 			return;
 		}
 	}
-
 	public void addContacts() {
-	    boolean addingContacts = true;
-	    while (addingContacts) {
-	        Contacts contacts = new Contacts();
-	        System.out.println("Enter First Name : ");
-	        String firstName = scanner.nextLine();
-	        contacts.setFirstName(firstName);
-
-	        System.out.println("Enter Last Name : ");
-	        String lastName = scanner.nextLine();
-	        contacts.setLastName(lastName);
-
-	        // Check if a contact with the same first name and last name already exists
-	        boolean contactExists = false;
-	        for (Contacts c : Contacts) {
-	            if (c.getFirstName().equals(firstName) && c.getLastName().equals(lastName)) {
-	                contactExists = true;
-	                System.out.println("Contact with the same first name and last name already exists:");
-	                System.out.println(c);
-	                System.out.println("Do you want to update this contact? (Y/N)");
-	                String choice = scanner.nextLine();
-	                if (choice.equalsIgnoreCase("Y")) {
-	                    // Update existing contact
-	                    c.setAddress(contacts.getAddress());
-	                    c.setCity(contacts.getCity());
-	                    c.setState(contacts.getState());
-	                    c.setEmail(contacts.getEmail());
-	                    c.setZip(contacts.getZip());
-	                    c.setPhoneNumber(contacts.getPhoneNumber());
-	                    System.out.println("Contact updated successfully.");
-	                }
-	                break;
-	            }
-	        }
-
-	        // If contact does not exist, add it to the Address Book
-	        if (!contactExists) {
-	            System.out.println("Enter Address :");
-	            String address = scanner.nextLine();
-	            contacts.setAddress(address);
-
-	            System.out.println("Enter City : ");
-	            String city = scanner.nextLine();
-	            contacts.setCity(city);
-
-	            System.out.println("Enter State : ");
-	            String state = scanner.nextLine();
-	            contacts.setState(state);
-
-	            System.out.println("Enter Email : ");
-	            String email = scanner.nextLine();
-	            contacts.setEmail(email);
-
-	            System.out.println("Enter ZIP : ");
-	            int zip = scanner.nextInt();
-	            scanner.nextLine(); // consume the newline character
-	            contacts.setZip(zip);
-
-	            System.out.println("Enter Phone Number");
-	            long phoneNumber = scanner.nextLong();
-	            scanner.nextLine(); // consume the newline character
-	            contacts.setPhoneNumber(phoneNumber);
-
-	            Contacts.add(contacts);
-	            System.out.println("Person Information has been added successfully");
-	        }
-
-	        System.out.println("Do you want to add another person? (Y/N)");
-	        String choice = scanner.nextLine();
-	        if (choice.equalsIgnoreCase("N")) {
-	            addingContacts = false;
-	        }
-	    }
 		boolean addingContacts = true;
 		while (addingContacts) {
 			Contacts contacts = new Contacts();
 			System.out.println("Enter First Name : ");
 			String firstName = scanner.nextLine();
 			contacts.setFirstName(firstName);
-
 			System.out.println("Enter Last Name : ");
 			String lastName = scanner.nextLine();
 			contacts.setLastName(lastName);
-
 			// Check if a contact with the same first name and last name already exists
 			boolean contactExists = false;
 			for (Contacts c : Contacts) {
@@ -145,39 +70,31 @@ public class AddressBookSystem extends Contacts {
 					break;
 				}
 			}
-
 			// If contact does not exist, add it to the Address Book
 			if (!contactExists) {
 				System.out.println("Enter Address :");
 				String address = scanner.nextLine();
 				contacts.setAddress(address);
-
 				System.out.println("Enter City : ");
 				String city = scanner.nextLine();
 				contacts.setCity(city);
-
 				System.out.println("Enter State : ");
 				String state = scanner.nextLine();
 				contacts.setState(state);
-
 				System.out.println("Enter Email : ");
 				String email = scanner.nextLine();
 				contacts.setEmail(email);
-
 				System.out.println("Enter ZIP : ");
 				int zip = scanner.nextInt();
 				scanner.nextLine(); // consume the newline character
 				contacts.setZip(zip);
-
 				System.out.println("Enter Phone Number");
 				long phoneNumber = scanner.nextLong();
 				scanner.nextLine(); // consume the newline character
 				contacts.setPhoneNumber(phoneNumber);
-
 				Contacts.add(contacts);
 				System.out.println("Person Information has been added successfully");
 			}
-
 			System.out.println("Do you want to add another person? (Y/N)");
 			String choice = scanner.nextLine();
 			if (choice.equalsIgnoreCase("N")) {
@@ -185,24 +102,7 @@ public class AddressBookSystem extends Contacts {
 			}
 		}
 	}
-
 	public void searchContactsByCityOrState() {
-	    System.out.println("Enter City or State to search contacts: ");
-	    String cityOrState = scanner.nextLine();
-	    List<Contacts> matchingContacts = new ArrayList<>();
-	    for (Contacts c : Contacts) {
-	        if (c.getCity().equalsIgnoreCase(cityOrState) || c.getState().equalsIgnoreCase(cityOrState)) {
-	            matchingContacts.add(c);
-	        }
-	    }
-	    if (matchingContacts.isEmpty()) {
-	        System.out.println("No contacts found in " + cityOrState);
-	    } else {
-	        System.out.println("Contacts found in " + cityOrState + ":");
-	        for (Contacts c : matchingContacts) {
-	            System.out.println(c);
-	        }
-	    }
 		System.out.println("Enter City or State to search contacts: ");
 		String cityOrState = scanner.nextLine();
 		List<Contacts> matchingContacts = new ArrayList<>();
@@ -220,7 +120,6 @@ public class AddressBookSystem extends Contacts {
 			}
 		}
 	}
-
 	public void viewPersonByCity() {
 		System.out.println("Enter City name to view persons: ");
 		String city = scanner.nextLine();
@@ -239,7 +138,6 @@ public class AddressBookSystem extends Contacts {
 			}
 		}
 	}
-
 	public void viewContactsByState() {
 		System.out.println("Enter State to view contacts: ");
 		String state = scanner.nextLine();
@@ -255,6 +153,35 @@ public class AddressBookSystem extends Contacts {
 		}
 	}
 
+	public void searchContactNumbersByCityOrState() {
+		System.out.println("Enter City or State to search contacts: ");
+		String cityOrState = scanner.nextLine();
+
+		int countByCity = 0;
+		int countByState = 0;
+
+		for (Contacts c : Contacts) {
+			if (c.getCity().equalsIgnoreCase(cityOrState)) {
+				countByCity++;
+			}
+			if (c.getState().equalsIgnoreCase(cityOrState)) {
+				countByState++;
+			}
+		}
+
+		if (countByCity == 0 && countByState == 0) {
+			System.out.println("No contacts found in " + cityOrState);
+		} else {
+			if (countByCity > 0) {
+				System.out.println("Number of contacts found in " + cityOrState + " city: " + countByCity);
+			}
+			if (countByState > 0) {
+				System.out.println("Number of contacts found in " + cityOrState + " state: " + countByState);
+			}
+		}
+	}
+
+	
 	public void displayContacts() {
 
 		if (Contacts.isEmpty()) {
