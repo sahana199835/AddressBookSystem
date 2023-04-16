@@ -6,8 +6,15 @@ public class AddressBookMain {
 
 		System.out.println("Welcome to Address Book System Program");
 
+		
+		AddressBookSystem addressBookSystem = new AddressBookSystem();
+        addressBookSystem.addContacts();
+        addressBookSystem.displayContacts();
+	}
+
+
 	}
 
 
 
-}
+
